@@ -1,0 +1,24 @@
+colorscheme vividchalk
+set number
+
+nmap <script> <SID>:    :<C-R>=getcmdline() =~ ',' ? "\0250" : ""<CR>
+nmap <script> d<CR>     <SID>:Dispatch<CR>
+nmap <script> d<Space>  <SID>:Dispatch<Space>
+nmap <script> d!        <SID>:Dispatch!
+nmap <script> <SID>make <SID>:<C-R>=exists(':Make') > 1 ? 'Make' : 'make'<CR>
+nmap <script> m<CR>     <SID>make<CR>
+nmap <script> m<Space>  <SID>make<Space>
+nmap <script> m!        <SID>make!
+
+" Is there a better mnemonic than =?
+nmap <script> =<CR>     :<C-R>=exists(':Start') > 1 ? 'Start' : 'shell'<CR><CR>
+nmap <script> =<Space>  :<C-R>=exists(':Start') > 1 ? 'Start ' : '!'<CR>
+nmap <script> =!        :<C-R>=exists(':Start') > 1 ? 'Start!' : '!'<CR>
+nmap <script> =c        :Console<CR>
+
+" https://github.com/stefanoverna/vim-i18n
+vmap <Leader>z :call I18nTranslateString()<CR>
+vmap <Leader>dt :call I18nDisplayTranslation()<CR>
+
+" use jsx synx highlighting for js files
+let g:jsx_ext_required = 0

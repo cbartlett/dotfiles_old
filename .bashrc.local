@@ -1,0 +1,21 @@
+export PATH="./bin:$PATH"
+
+alias be="bundle exec "
+
+eval "$(rbenv init -)"
+
+if test -f ~/.gnupg/.gpg-agent-info -a -n "$(pgrep gpg-agent)"; then
+  source ~/.gnupg/.gpg-agent-info
+  export GPG_AGENT_INFO
+else
+  eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+fi
+
+function title {
+  echo -ne "\033]0;"${PWD##*/}"\007"
+}
+
+alias mux="title && tmux new-session -s ${PWD##*/}"
+
+alias pw="pwgen -n 16 1 | pbcopy"
+alias config='/usr/bin/git --git-dir=/Users/colin/.cfg/ --work-tree=/Users/colin'
