@@ -1,3 +1,5 @@
+export SOURCE_DIR="$HOME/code"
+
 export PATH="./bin:$PATH"
 
 alias be="bundle exec "
