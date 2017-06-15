@@ -2,6 +2,8 @@ export SOURCE_DIR="$HOME/code"
 
 export PATH="./bin:$PATH"
 
+export PATH="$PATH:`yarn global bin`"
+
 alias be="bundle exec "
 
 eval "$(rbenv init -)"
