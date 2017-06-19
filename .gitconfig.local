@@ -1,0 +1,12 @@
+[user]
+       name = Colin Bartlett
+       email = colin@colinabartlett.com
+       signingkey = D8E33B47
+[commit]
+       gpgsign = true
+[rerere]
+       enabled = true
+       autoupdate = true
+[filter "tabspace2"]
+    smudge = unexpand --tabs=2 --first-only
+    clean = expand --tabs=2 --initial
