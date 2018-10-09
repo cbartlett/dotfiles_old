@@ -53,3 +53,6 @@ tpope/vim-dispatch
 JamshedVesuna/vim-markdown-preview
 chemzqm/vim-jsx-improve
 jamessan/vim-gnupg
+tpope/vim-db
+tommcdo/vim-fubitive
+bogado/file-line
