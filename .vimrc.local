@@ -29,3 +29,34 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 nnoremap ]c :call search('^\s*'.substitute(escape(&cms, '\.*[]^$'), '%s', '.*', '').'\s*$')<CR>
 nnoremap [c :call search('^\s*'.substitute(escape(&cms, '\.*[]^$'), '%s', '.*', '').'\s*$', 'b')<CR>
+
+au FileType xhtml,xml,xslt so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
+
+augroup XML
+    autocmd!
+    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
+augroup END
+
+set shiftwidth=2 tabstop=2 expandtab
+
+map <leader>* :Ggrep <cword><CR><CR>
+
+let g:fugitive_bitbucket_domains = ['stash']
+
+
+" tabular mapping
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
+" markdown preview with github flavoring
+let vim_markdown_preview_github=1
