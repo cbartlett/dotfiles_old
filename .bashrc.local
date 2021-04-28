@@ -75,5 +75,5 @@ alias python="python3"
 alias pip="pip3"
 
 # change this to source from ~/.netrc
-export GH_USER="cbartlett"
-export GH_PASS="d5bff4bfac47e4018846ff82aed55beb97a224a1"
+# export GH_USER="cbartlett"
+# export GH_PASS="changeme"
