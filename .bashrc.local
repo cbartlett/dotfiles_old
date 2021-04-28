@@ -1,10 +1,28 @@
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 export SOURCE_DIR="$HOME/code"
 
 export PATH="./bin:$PATH"
 
 export PATH="$PATH:`yarn global bin`"
 
+export PATH="$PATH:/usr/local/opt/python/libexec/bin"
+
+export PATH="$PATH:/Users/colin/Library/Python/3.6/bin"
+
+export PATH="$PATH:/Users/colin/code/development_tools/pr_pal"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+export PATH=".git/safe/../../bin:$PATH"
+export PATH=".git/safe/../../exe:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
 alias be="bundle exec "
+alias pr-pal="BUNDLE_GEMFILE='/Users/colin/code/development_tools/pr_pal/Gemfile' /Users/colin/code/development_tools/pr_pal/pr-pal"
 
 eval "$(rbenv init -)"
 
@@ -17,11 +35,23 @@ eval "$(rbenv init -)"
 #   eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
 # fi
 
-function title {
-  echo -ne "\033]0;"${PWD##*/}"\007"
-}
+# function title {
+#   echo -ne "\033]0;"${PWD##*/}"\007"
+# }
 
-alias mux="title && tmux new-session -s ${PWD##*/}"
+#setup terminal tab title
+function title {
+    if [ "$1" ]
+    then
+        unset PROMPT_COMMAND
+        echo -ne "\033]0;${*}\007"
+    else
+        export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+    fi
+}
+title
+
+alias mux="tmux new -s ${PWD##*/}"
 
 alias pw="pwgen -n -s 28 1 | pbcopy"
 alias config='/usr/bin/git --git-dir=/Users/colin/.cfg/ --work-tree=/Users/colin'
@@ -36,5 +66,14 @@ docker () {
   $DOCKER_BIN $@
 }
 
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+ export NVM_DIR="$HOME/.nvm"
+ . "/usr/local/opt/nvm/nvm.sh"
+
+__git_complete gco _git_checkout
+
+alias python="python3"
+alias pip="pip3"
+
+# change this to source from ~/.netrc
+export GH_USER="cbartlett"
+export GH_PASS="d5bff4bfac47e4018846ff82aed55beb97a224a1"
