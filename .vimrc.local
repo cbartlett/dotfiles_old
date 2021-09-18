@@ -3,6 +3,7 @@ set number
 
 nmap <script> <SID>:    :<C-R>=getcmdline() =~ ',' ? "\0250" : ""<CR>
 nmap <script> d<CR>     <SID>:Dispatch<CR>
+nmap <script> D<CR>     :execute "Dispatch bundle exec rspec %:" . line(".")<CR>
 nmap <script> d<Space>  <SID>:Dispatch<Space>
 nmap <script> d!        <SID>:Dispatch!
 nmap <script> <SID>make <SID>:<C-R>=exists(':Make') > 1 ? 'Make' : 'make'<CR>
@@ -204,6 +205,10 @@ nnoremap <silent> <Leader>c :call clearmatches()<CR>
 " nmap <script>n<CR> :tab drop tmp/notes.md<CR>
 
 
-" https://coderwall.com/p/ftqcla/markdown-with-fenced-code-blocks-in-vim
-let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml']
+let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'vim']
 
+" reselect pasted text
+nnoremap gp `[v`]
+
+" maximize current split or return to previous
+noremap <C-w>m :MaximizerToggle<CR>
